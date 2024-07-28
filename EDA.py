@@ -1,13 +1,13 @@
 import pandas as pd
 
-def info(dF):
+def info(dF, target):
     correlation_matrix = dF.corr()
     info = pd.DataFrame({"name": dF.columns,
                      "non-nulls": len(dF) - dF.isnull().sum().values,
                      "nulls": dF.isnull().sum().values,
                      "type": dF.dtypes.values,
                      "unique value of feature":dF.nunique(),
-                     "corr_target": correlation_matrix["Sales_Revenue"]
+                     "corr_target": correlation_matrix[target]
                     })
     describe_stats = dF.describe(include='all').transpose()
 
